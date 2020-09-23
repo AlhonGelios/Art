@@ -33,6 +33,12 @@ const mask = (selector) => {
             if (this.value.length == 2) {
                 this.value = '';
             } else {
+               // setCursorPosition(this.value.length, this);
+            }
+        }
+
+        if (event.type === 'click') {
+            if (this.selectionStart < 2 && this.selectionEnd < 2) {
                 setCursorPosition(this.value.length, this);
             }
         }
@@ -43,7 +49,8 @@ const mask = (selector) => {
     inputs.forEach(input => {
         input.addEventListener('input' , createMask);
         input.addEventListener('focus' , createMask);
-        input.addEventListener('bluer' , createMask);
+        input.addEventListener('blur' , createMask);
+        input.addEventListener('click' , createMask);
     });
 };
 
