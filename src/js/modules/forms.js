@@ -70,6 +70,20 @@ const forms = () => {
             statusMessage.appendChild(textMessage);
 
             const formData = new FormData(item);
+            if (item.getAttribute('data-calc') === 'calc') {
+                formData.append('totalPrice', document.querySelector('.calc-price').textContent);
+
+                const formChild = item.children;
+                
+                for (let key in formChild) {
+                    //console.log(formChild[key].nodeName);
+                    if (formChild[key].nodeName === 'SELECT') {
+                        formData.append(formChild[key].id,formChild[key].options[formChild[key].options.selectedIndex].outerText);
+                    } else if (formChild[key].nodeName === 'INPUT') {
+                        formData.append(formChild[key].classList, formChild[key].value);
+                    }
+                }
+            }
    
             let api;
             item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
