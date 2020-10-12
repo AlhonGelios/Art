@@ -21,15 +21,36 @@ const calc = (size, material, options, promocode, result) => {
         }
     };
 
-    const createOptions = (response) => {
-        sizeBlock.innerHTML = '';
+    const createOptions = (response, selector, placeholder) => {
+        while (selector.firstChild) {
+            selector.removeChild(selector.firstChild);
+        }
+        //console.log(response);
+        
         let option = document.createElement('option');
+        option.value = '';
+        option.textContent = placeholder;
+        selector.appendChild(option);
 
-        console.log(response);
+        for(let key in response) {
+            let option = document.createElement('option');
+            option.value = response[key];
+            option.textContent = key;
+            //console.log(option);
+            selector.appendChild(option);
+        }
     };
 
     getResource('http://localhost:3000/size')
-        .then (res => createOptions(res))
+        .then (res => createOptions(res, sizeBlock, 'Выберите размер картины'))
+        .catch(error => console.log(error));
+
+    getResource('http://localhost:3000/material')
+        .then (res => createOptions(res, materialBlock, 'Выберите материал картины'))
+        .catch(error => console.log(error));
+
+    getResource('http://localhost:3000/options')
+        .then (res => createOptions(res, optionsBlock, 'Дополнительные услуги'))
         .catch(error => console.log(error));
 
 
