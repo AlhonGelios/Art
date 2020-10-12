@@ -1,3 +1,5 @@
+import {getResource} from './services/requests';
+
 const calc = (size, material, options, promocode, result) => {
     const   sizeBlock = document.querySelector(size),
             materialBlock = document.querySelector(material),
@@ -18,6 +20,18 @@ const calc = (size, material, options, promocode, result) => {
             resultBlock.textContent = sum;
         }
     };
+
+    const createOptions = (response) => {
+        sizeBlock.innerHTML = '';
+        let option = document.createElement('option');
+
+        console.log(response);
+    };
+
+    getResource('http://localhost:3000/size')
+        .then (res => createOptions(res))
+        .catch(error => console.log(error));
+
 
     sizeBlock.addEventListener('change', calcFunc);
     materialBlock.addEventListener('change', calcFunc);
