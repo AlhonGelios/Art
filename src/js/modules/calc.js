@@ -22,9 +22,10 @@ const calc = (size, material, options, promocode, result) => {
     };
 
     const createOptions = (response, selector, placeholder) => {
-        while (selector.firstChild) {
-            selector.removeChild(selector.firstChild);
-        }
+        // while (selector.firstChild) {
+        //     selector.removeChild(selector.firstChild);
+        // }
+        selector.innerHTML = '';
         //console.log(response);
         
         let option = document.createElement('option');
