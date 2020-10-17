@@ -6,6 +6,8 @@ import checkTextInputs from './modules/checkTextInputs';
 import showMoreStyles from './modules/showMoreStyles';
 import calc from './modules/calc';
 import filter from './modules/filter_1';
+import pictureSize from './modules/pictureSize';
+import accordion from './modules/accordion';
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
@@ -20,4 +22,6 @@ window.addEventListener('DOMContentLoaded', () => {
     showMoreStyles('.button-transparent', '#styles .row');
     calc('#size', '#material', '#options', '.promocode', '.calc-price');
     filter('.portfolio-menu', '.portfolio-wrapper', '.portfolio-no');
+    pictureSize('.sizes-block');
+    accordion('.accordion-heading');
 });
