@@ -5,6 +5,8 @@ const pictureSize = (imgSelector) => {
     function showImg(block) {
         const img = block.querySelector('img');
         img.src = img.src.slice(0, -4) + '-1.png';
+        
+        block.classList.add('animated', 'flipInY');
 
         block.querySelectorAll('p:not(.size-hit)').forEach(p => {
             p.style.dysplay = 'none';
@@ -15,7 +17,7 @@ const pictureSize = (imgSelector) => {
     function hideImg(block) {
         const img = block.querySelector('img');
         img.src = img.src.slice(0, -6) + '.png';
-        
+
         block.querySelectorAll('p:not(.size-hit)').forEach(p => {
             p.style.dysplay = 'block';
         });
@@ -23,7 +25,7 @@ const pictureSize = (imgSelector) => {
 
     blocks.forEach(block => {
         block.addEventListener('mouseover', (e) => {
-            showImg(e.target.parentNode);
+            showImg(block);
         });
 
         block.addEventListener('mouseout', () => {
